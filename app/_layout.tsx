@@ -1,24 +1,66 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider as NavigationThemeProvider,
+} from "@react-navigation/native";
+import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import "react-native-reanimated";
+import { Provider } from "react-redux";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { AuthProvider } from "@/contexts/AuthContext";
+import { SheetProvider } from "@/contexts/SheetContext";
+import { ThemeProvider, useTheme } from "@/contexts/ThemeContext";
+import { useAuthRedirect } from "@/hooks/use-auth-redirect";
+import { store } from "@/store/store";
+import { queryClient } from "@/config/queryClient";
+import { GlobalSheet } from "@/components/GlobalSheet";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export const unstable_settings = {
-  anchor: '(tabs)',
+  anchor: "(tabs)",
 };
 
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
+function RootLayoutNav() {
+  const { isDark } = useTheme();
+  useAuthRedirect();
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+    <NavigationThemeProvider value={isDark ? DarkTheme : DefaultTheme}>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(tabs)" />
+        <Stack.Screen
+          name="modal"
+          options={{ presentation: "modal", title: "Modal" }}
+        />
       </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+      <GlobalSheet />
+      <StatusBar style={isDark ? "light" : "dark"} />
+    </NavigationThemeProvider>
+  );
+}
+
+export default function RootLayout() {
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <QueryClientProvider client={queryClient}>
+        <Provider store={store}>
+          <ThemeProvider>
+            <AuthProvider>
+              <SheetProvider>
+                <SafeAreaProvider>
+                  <BottomSheetModalProvider>
+                    <RootLayoutNav />
+                  </BottomSheetModalProvider>
+                </SafeAreaProvider>
+              </SheetProvider>
+            </AuthProvider>
+          </ThemeProvider>
+        </Provider>
+      </QueryClientProvider>
+    </GestureHandlerRootView>
   );
 }
