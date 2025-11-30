@@ -179,17 +179,17 @@ Choose:
 
 ## 📸 Screenshots
 <p align="center">
-  <img src="assets/screens/splash_light.PNG" width="200"/>
-  <img src="assets/screens/home_dark.PNG" width="200"/>
-  <img src="assets/screens/calander_dark.PNG" width="200"/>
-  <img src="assets/screens/profile.PNG" width="200"/>
-  <img src="assets/screens/app_setting.PNG" width="200"/>
-  <img src="assets/screens/customisation.PNG" width="200"/>
-  <img src="assets/screens/update_profile.PNG" width="200"/>
-  <img src="assets/screens/view_profile.PNG" width="200"/>
-  <img src="assets/screens/focus.PNG" width="200"/>
-  <img src="assets/screens/home_light.PNG" width="200"/>
-  <img src="assets/screens/customisation_light.PNG" width="200"/>
+  <img src="assets/screens/splash_light.PNG" width="200" style="margin:10px"/>
+  <img src="assets/screens/home_dark.PNG" width="200" style="margin:10px"/>
+  <img src="assets/screens/calander_dark.PNG" width="200" style="margin:10px"/>
+  <img src="assets/screens/profile.PNG" width="200" style="margin:10px"/>
+  <img src="assets/screens/app_setting.PNG" width="200" style="margin:10px"/>
+  <img src="assets/screens/customisation.PNG" width="200" style="margin:10px"/>
+  <img src="assets/screens/update_profile.PNG" width="200" style="margin:10px"/>
+  <img src="assets/screens/view_profile.PNG" width="200" style="margin:10px"/>
+  <img src="assets/screens/focus.PNG" width="200" style="margin:10px"/>
+  <img src="assets/screens/home_light.PNG" width="200" style="margin:10px"/>
+  <img src="assets/screens/customisation_light.PNG" width="200" style="margin:10px"/>
 </p>
 
 <!-- 
